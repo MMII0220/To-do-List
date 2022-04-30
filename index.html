@@ -2,39 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="wclassth=device-wclassth, initial-scale=1.0"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="shortcut icon" type="image/png" href="list.png" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>To-do List</title>
   </head>
   <body>
     <main>
       <header>
         <div class="container">
-          <div id="header">
+          <article class="header__inner">
             <h2><i class="fas fa-clipboard-check"></i> To-do List</h2>
             <div class="user_input">
-              <input type="text" id="input" placeholder="I need to..." /><button
-                id="add_item"
-              >
-                Submit
-              </button>
+              <input class="input" type="text" placeholder="I need to..." />
+              <button class="add_item">Submit</button>
             </div>
-          </div>
+          </article>
         </div>
       </header>
 
       <section>
         <div class="container">
-          <div id="to_do_list"></div>
+          <div class="to_do_list"></div>
         </div>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>
