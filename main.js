@@ -1,9 +1,10 @@
 window.addEventListener('DOMContentLoaded', () => {
   const add = document.querySelector('.add_item'),
     note = document.querySelector('.input'),
-    erase = document.querySelector('.fa-trash'),
+    erase = document.querySelectorAll('.fa-trash'),
     mark = document.querySelector('.fa-check-square'),
-    text = document.querySelector('.to_do_list');
+    text = document.querySelector('.to_do_list'),
+    note__info = document.querySelectorAll('.item');
 
   add.addEventListener('click', (event) => {
     text.innerHTML += `<div class="item">
@@ -30,5 +31,11 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       if (e.code === 'Enter') e.target.value = '';
     }
+  });
+
+  erase.forEach((item) => {
+    item.addEventListener('click', () => {
+      note__info.textContent = '';
+    });
   });
 });
