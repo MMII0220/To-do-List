@@ -6,14 +6,12 @@ window.addEventListener('DOMContentLoaded', () => {
     text = document.querySelector('.to_do_list'),
     note__info = document.querySelectorAll('.item');
 
-  add.addEventListener('click', (event) => {
-    text.innerHTML += `<div class="item">
-    <p>${note.value}</p>
-    <div>
-      <i class="fas fa-check-square" style="color: limegreen"></i>
-      <i class="fas fa-trash" style="color: darkgray"></i>
-    </div>
-    </div>`;
+  let i = 0;
+
+  add.addEventListener('click', () => {
+    if (note.value.trim()) {
+      text.innerHTML += `<div class="item"><p>${note.value}</p><div><i class="fas fa-check-square" style="color: limegreen"></i><i class="fas fa-trash" style="color: darkgray"></i></div></div>`;
+    }
 
     note.value = '';
   });
@@ -35,7 +33,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   erase.forEach((item) => {
     item.addEventListener('click', () => {
-      note__info.textContent = '';
+      note__info[i].textContent = '';
     });
+    i++;
   });
 });
