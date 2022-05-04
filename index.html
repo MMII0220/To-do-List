@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="wclassth=device-wclassth, initial-scale=1.0"
-    />
+    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -20,17 +17,27 @@
         <div class="container">
           <article class="header__inner">
             <h2><i class="fas fa-clipboard-check"></i> To-do List</h2>
-            <div class="user_input">
-              <input class="input" type="text" placeholder="I need to..." />
-              <button class="add_item">Submit</button>
-            </div>
+            <form class="fo_rm">
+              <div class="user_input">
+                <input class="input" type="text" placeholder="I need to..." />
+                <button class="add_item">Submit</button>
+              </div>
+            </form>
           </article>
         </div>
       </header>
 
       <section>
         <div class="container">
-          <div class="to_do_list"></div>
+          <article class="to_do_list">
+            <!-- <div class="item">
+              <p class="w">${item}</p>
+              <div>
+                <i class="fas fa-check-square" style="color: limegreen"></i>
+                <i class="fas fa-trash" style="color: darkgray"></i>
+              </div>
+            </div> -->
+          </article>
         </div>
       </section>
     </main>
