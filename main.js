@@ -2,9 +2,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const addForm = document.querySelector('form.fo_rm'),
     add = addForm.querySelector('.add_item'),
     note = document.querySelector('.input'),
-    erase = document.querySelectorAll('.fas .fa-trash'),
+    erase = document.querySelectorAll('.fa-trash'),
     mark = document.querySelector('.fa-check-square'),
-    note__info = document.querySelector('.item'),
+    note__info = document.querySelectorAll('.w'),
     text = document.querySelector('.to_do_list');
 
   let notes = {
@@ -30,15 +30,11 @@ window.addEventListener('DOMContentLoaded', () => {
   text.addEventListener('click', (event) => {
     let e = event.target;
 
-    notes.note__list.forEach((item) => {
-      if (e.classList.contains('fa-trash')) {
-        item.textContent = '';
+    if (e.classList.contains('fa-trash')) {
+      e.parentNode.parentNode.outerHTML = '';
 
-        e.parentNode.parentNode.outerHTML = '';
-
-        console.log(notes.note__list);
-      }
-    });
+      console.log(notes.note__list);
+    }
   });
 
   function createNotes() {
@@ -47,15 +43,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Все что будет в обьекте будет появляться.
     notes.note__list.forEach((item) => {
-      if (item.trim()) {
-        text.innerHTML += `<div class="item">
+      text.innerHTML += `<div class="item">
           <p class="w">${item}</p>
           <div>
             <i class="fas fa-check-square" style="color: limegreen"></i>
             <i class="fas fa-trash" style="color: darkgray"></i>
           </div>
         </div>`;
-      }
+      console.log(erase);
+      erase.forEach((btn, i) => {
+        console.log(btn);
+      });
     });
   }
 });
