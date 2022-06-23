@@ -2,12 +2,37 @@ window.addEventListener('DOMContentLoaded', () => {
   const addForm = document.querySelector('form.fo_rm'),
     add = addForm.querySelector('.add_item'),
     note = document.querySelector('.input'),
-    erase = document.querySelectorAll('.fa-trash'),
-    mark = document.querySelector('.fa-check-square'),
-    note__info = document.querySelectorAll('.w'),
     text = document.querySelector('.to_do_list');
 
-  let notes = {
+  const obj = JSON.parse(localStorage.getItem('notes')) || {
+    0: 'a',
+    1: 'b',
+    2: 'c',
+  };
+
+  function asd() {
+    add.addEventListener('click', (e) => {
+      e.preventDefault();
+      cycle();
+    });
+  }
+  asd();
+
+  function cycle() {
+    for (let i in obj) {
+      obj[i] = note.value;
+      text.innerHTML += `<div class="item">
+        <p class="w">${note.value}</p>
+        <div>
+          <input type="checkbox" style="color: limegreen" />
+          <i class="fas fa-trash" style="color: darkgray"></i>
+        </div>
+      </div>`;
+      i++;
+    }
+  }
+
+  /* let notes = {
     note__list: [],
   };
 
@@ -46,14 +71,10 @@ window.addEventListener('DOMContentLoaded', () => {
       text.innerHTML += `<div class="item">
           <p class="w">${item}</p>
           <div>
-            <i class="fas fa-check-square" style="color: limegreen"></i>
+            <input type="checkbox" style="color: limegreen" />
             <i class="fas fa-trash" style="color: darkgray"></i>
           </div>
         </div>`;
-      console.log(erase);
-      erase.forEach((btn, i) => {
-        console.log(btn);
-      });
     });
-  }
+  } */
 });
