@@ -1,9 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   const addForm = document.querySelector('form.fo_rm'),
-    basket = document.querySelectorAll('.fa-trash'),
     noteText = document.querySelector('.input'),
-    note = document.querySelectorAll('.item'),
-    asd = document.querySelectorAll('.note__noteContainer'),
     noteContainer = document.querySelector('.to_do_list');
 
   let i = 0;
@@ -16,7 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const e = event.target;
 
-      obj[i] = noteText.value;
+      if (noteText.value.trim()) obj[i] = noteText.value;
+
       e.reset();
 
       reCycle();
@@ -30,16 +28,11 @@ window.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       const e = event.target;
 
-      /*e.parentElement.previousSibling.previousSibling.classList.contains("note__noteContainer")*/
-
-      /* console.log(e.parentElement.previousSibling.previousSibling.innerHTML); */
       for (let i in obj) {
         if (
           e.classList.contains('fa-trash') &&
           obj[i] == e.parentElement.previousSibling.previousSibling.innerHTML
         ) {
-          /* e.parentNode.parentNode.style.display = 'none';
-          console.log(e.parentNode.parentNode); */
           delete obj[i];
         }
       }
@@ -66,54 +59,10 @@ window.addEventListener('DOMContentLoaded', () => {
         `;
       noteContainer.appendChild(noteItem);
     }
+    localStorage.setItem('notes', JSON.stringify(obj));
+
     i++;
   };
 
-  addNote();
-
-  /* let notes = {
-    note__list: [],
-  };
-
-  addForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    createNotes();
-
-    e.target.reset();
-  });
-
-  // Добавляем Заметки через кнопку
-  add.addEventListener('click', () => {
-    if (note.value.trim()) {
-      notes.note__list.push(note.value);
-    }
-  });
-
-  // Корзина, удаляем Заметки
-  noteContainer.addEventListener('click', (event) => {
-    let e = event.target;
-
-    if (e.classList.contains('fa-trash')) {
-      e.parentNode.parentNode.outerHTML = '';
-
-      console.log(notes.note__list);
-    }
-  });
-
-  function createNotes() {
-    // То что изначально будет в экране, все будет стерто. Каждый раз оно будет появляться
-    noteContainer.innerHTML = '';
-
-    // Все что будет в обьекте будет появляться.
-    notes.note__list.forEach((item) => {
-      noteContainer.innerHTML += `<div class="item">
-          <p class="w">${item}</p>
-          <div>
-            <input type="checkbox" style="color: limegreen" />
-            <i class="fas fa-trash" style="color: darkgray"></i>
-          </div>
-        </div>`;
-    });
-  } */
+  window.addEventListener('load', addNote);
 });
