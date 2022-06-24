@@ -1,36 +1,75 @@
 window.addEventListener('DOMContentLoaded', () => {
   const addForm = document.querySelector('form.fo_rm'),
-    add = addForm.querySelector('.add_item'),
-    note = document.querySelector('.input'),
-    text = document.querySelector('.to_do_list');
+    basket = document.querySelectorAll('.fa-trash'),
+    noteText = document.querySelector('.input'),
+    note = document.querySelectorAll('.item'),
+    asd = document.querySelectorAll('.note__noteContainer'),
+    noteContainer = document.querySelector('.to_do_list');
 
-  const obj = JSON.parse(localStorage.getItem('notes')) || {
-    0: 'a',
-    1: 'b',
-    2: 'c',
-  };
+  let i = 0;
 
-  function asd() {
-    add.addEventListener('click', (e) => {
-      e.preventDefault();
+  const obj = JSON.parse(localStorage.getItem('notes')) || {};
+
+  const addNote = () => {
+    addForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const e = event.target;
+
+      obj[i] = noteText.value;
+      e.reset();
+
+      reCycle();
+      deleteNote();
       cycle();
     });
-  }
-  asd();
+  };
 
-  function cycle() {
+  const deleteNote = () => {
+    noteContainer.addEventListener('click', (event) => {
+      event.preventDefault();
+      const e = event.target;
+
+      /*e.parentElement.previousSibling.previousSibling.classList.contains("note__noteContainer")*/
+
+      /* console.log(e.parentElement.previousSibling.previousSibling.innerHTML); */
+      for (let i in obj) {
+        if (
+          e.classList.contains('fa-trash') &&
+          obj[i] == e.parentElement.previousSibling.previousSibling.innerHTML
+        ) {
+          /* e.parentNode.parentNode.style.display = 'none';
+          console.log(e.parentNode.parentNode); */
+          delete obj[i];
+        }
+      }
+
+      reCycle();
+      cycle();
+    });
+  };
+
+  const reCycle = () => {
+    noteContainer.innerHTML = '';
+  };
+
+  const cycle = () => {
     for (let i in obj) {
-      obj[i] = note.value;
-      text.innerHTML += `<div class="item">
-        <p class="w">${note.value}</p>
-        <div>
-          <input type="checkbox" style="color: limegreen" />
-          <i class="fas fa-trash" style="color: darkgray"></i>
-        </div>
-      </div>`;
-      i++;
+      const noteItem = document.createElement('div');
+      noteItem.classList.add('item');
+      noteItem.innerHTML = `
+          <p class="note__noteContainer">${obj[i]}</p>
+          <div>
+            <input type="checkbox" style="color: limegreen" />
+            <i class="fas fa-trash" style="color: darkgray"></i>
+          </div>
+        `;
+      noteContainer.appendChild(noteItem);
     }
-  }
+    i++;
+  };
+
+  addNote();
 
   /* let notes = {
     note__list: [],
@@ -52,7 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // Корзина, удаляем Заметки
-  text.addEventListener('click', (event) => {
+  noteContainer.addEventListener('click', (event) => {
     let e = event.target;
 
     if (e.classList.contains('fa-trash')) {
@@ -64,11 +103,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function createNotes() {
     // То что изначально будет в экране, все будет стерто. Каждый раз оно будет появляться
-    text.innerHTML = '';
+    noteContainer.innerHTML = '';
 
     // Все что будет в обьекте будет появляться.
     notes.note__list.forEach((item) => {
-      text.innerHTML += `<div class="item">
+      noteContainer.innerHTML += `<div class="item">
           <p class="w">${item}</p>
           <div>
             <input type="checkbox" style="color: limegreen" />
