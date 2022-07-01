@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const e = event.target;
 
       if (noteText.value.trim()) obj[i] = noteText.value;
-
+      localStorage.setItem('notes', JSON.stringify(obj));
       e.reset();
 
       reCycle();
@@ -59,7 +59,6 @@ window.addEventListener('DOMContentLoaded', () => {
         `;
       noteContainer.appendChild(noteItem);
     }
-    localStorage.setItem('notes', JSON.stringify(obj));
 
     i++;
   };
